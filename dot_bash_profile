@@ -1,6 +1,6 @@
 #
 # ~/.bash_profile
-#
+# chezmoi
 export XKB_DEFAULT_OPTIONS="ctrl:swapcaps"
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
