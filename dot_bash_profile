@@ -1,0 +1,14 @@
+#
+# ~/.bash_profile
+#
+export XKB_DEFAULT_OPTIONS="ctrl:swapcaps"
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Created by `pipx` on 2026-06-19 21:11:41
+export PATH="$PATH:/home/nik/.local/bin"
+
+# starship config location
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+# add pager so cheznav can previsualize 
+export PAGER=bat
