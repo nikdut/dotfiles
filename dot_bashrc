@@ -1,0 +1,46 @@
+#
+# ~/.bashrc
+# chezmoi
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#pstarship prompt
+# 
+eval "$(starship init bash)"
+
+alias vi='vim'
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias td='todo.sh'
+PS1='[\u@\h \W]\$ '
+export EDITOR=vim
+# vim bindings for bash
+set -o vi
+# zoxide setup
+eval "$(zoxide init bash)"
+# fzf setup
+eval "$(fzf --bash)"
+# alias to search with fzf and open with vim
+alias fz='rg --files --hidden --follow --ignore-vcs -g "!{node_modules,.git}"|fzf'
+alias fv='vim $(fz)'
+# workaround for cheznav
+alias cn='cheznavworkaround'
+cheznavworkaround() {
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519  
+cheznav
+}
+# alias to search yay with fzf
+alias fy='fzfyay'
+fzfyay() {
+  local pkg
+  pkg=$(yay -Slq | fzf -m --preview 'yay -Si {1} 2>/dev/null || echo "No info available"' --preview-window=right:50%:wrap)
+  if [ -n "$pkg" ]; then
+    echo "Installing: $pkg"
+    yay -S $pkg
+  fi
+}
+# Created by `pipx` on 2026-06-19 21:11:41
+export PATH="$PATH:/home/nik/.local/bin"

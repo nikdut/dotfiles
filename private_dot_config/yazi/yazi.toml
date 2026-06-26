@@ -1,0 +1,4 @@
+[[plugin.prepend_previewers]]
+mime = "application/epub+zip"
+run = "epub-preview"
+
