@@ -42,5 +42,39 @@ fzfyay() {
     yay -S $pkg
   fi
 }
+# chezmoi pusher
+# Function to push chezmoi dotfiles to GitHub with a custom commit message
+cheztoi() {
+    # Navigate to chezmoi directory
+    cd ~/.local/share/chezmoi/ || {
+        echo "Error: chezmoi directory not found at ~/.local/share/chezmoi/"
+        return 1
+    }
+
+    # Check if there are changes to commit
+    if git diff-index --quiet HEAD --; then
+        echo "No changes to commit in chezmoi."
+        return 0
+    fi
+
+    # Prompt for commit message
+    read -p "Enter commit message for chezmoi dotfiles: " commit_msg
+
+    # Exit if no message is provided
+    if [[ -z "$commit_msg" ]]; then
+        echo "No commit message provided. Aborting."
+        return 1
+    fi
+
+    # Add all changes, commit, and push
+    git add . && \
+    git commit -m "$commit_msg" && \
+    git push origin master
+
+    # Return to the original directory
+    cd - > /dev/null
+}
+
 # Created by `pipx` on 2026-06-19 21:11:41
 export PATH="$PATH:/home/nik/.local/bin"
+
