@@ -32,6 +32,8 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519  
 cheznav
 }
+#alias to listen to music
+alias mmpv='mpv --idle http://192.168.1.19:8000'
 # alias to search yay with fzf
 alias fy='fzfyay'
 fzfyay() {
@@ -74,6 +76,9 @@ cheztoi() {
     # Return to the original directory
     cd - > /dev/null
 }
+
+# chezmoi helper
+alias chezit='chezmoi managed |fzf | xargs -r chezmoi edit'
 
 # Created by `pipx` on 2026-06-19 21:11:41
 export PATH="$PATH:/home/nik/.local/bin"
